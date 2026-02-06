@@ -23,14 +23,15 @@ This is a web-based application built using Flask and TensorFlow for detecting b
 
 ### Requirements
 
-- Python 3.x
-- Flask
-- TensorFlow/Keras
-- OpenCV
-- NumPy
-- Flask-Login
-- Flask-SQLAlchemy
-- ReportLab
+- Python==3.10
+- Flask==3.0.3
+- TensorFlow==2.17.0
+- Keras==3.6.0
+- opencv-python==4.10.0.82
+- numpy==1.26.4
+- Flask-Login==0.6.3
+- Flask-SQLAlchemy==3.1.1
+- reportlab==4.2.5
 
 ### Installation Steps
 
@@ -61,7 +62,7 @@ This is a web-based application built using Flask and TensorFlow for detecting b
     ```
 
 ### Application structure
-
+```text
 ├── app.py                   # Ana Flask uygulaması (Geliştirme sunucusu)
 ├── wsgi.py                  # Prodüksiyon sunucusu (Gunicorn vb.) giriş noktası
 ├── instance/                # SQLite veritabanı klasörü
@@ -78,8 +79,8 @@ This is a web-based application built using Flask and TensorFlow for detecting b
 ├── templates/               # HTML sayfaları 
 ├── .gitignore               # Git'e gönderilmeyecek dosyaların listesi
 ├── requirements.txt         # Gerekli Python kütüphaneleri listesi
-├── linux_requirements.txt   # Linux sunucular için optimize edilmiş kütüphane listesi
-└── README.md                # Proje dökümantasyonu
+├── linux_requirements.txt   # Linux sunucular için optimize edilmiş küphaneler
+└── README.md                # Proje dökümantasyonu ```
 
 ### Usage
 
