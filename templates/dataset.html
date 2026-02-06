@@ -8,9 +8,11 @@
 <body>
     {% include 'partials/navbar.html' %}
 
+    <!-- Main container for dataset information -->
     <div class="container mt-5">
         <h2 class="text-primary mb-4 text-center"><i class="fas fa-database"></i> Dataset Overview</h2>
 
+        <!-- Abstract Section -->
         <div class="card shadow-lg border-0 rounded-lg mb-4">
             <div class="card-body">
                 <h3>Abstract</h3>
@@ -23,11 +25,13 @@
             </div>
         </div>
 
+        <!-- About Dataset Section -->
         <div class="card shadow-lg border-0 rounded-lg mb-4">
             <div class="card-body">
                 <h3>About Dataset</h3>
                 <p>
                     Beyin tümörü, beyindeki anormal hücrelerin birikimi veya kütlesidir. Beyninizi çevreleyen kafatası oldukça sert bir yapıya sahiptir. Böyle sınırlı bir alan içinde herhangi bir büyüme, çeşitli problemlere yol açabilir. Beyin tümörleri kanserli (kötü huylu) veya kanserli olmayan (iyi huylu) olabilir. İyi huylu veya kötü huylu tümörler büyüdüğünde, kafatası içindeki basıncı artırarak beyin hasarına ve potansiyel olarak yaşamı tehdit eden durumlara yol açabilir.
+                </p>
                 <h4>The Importance of the Subject</h4>
                 <p>
                     Beyin tümörlerinin erken teşhisi ve sınıflandırılması, tıbbi görüntüleme alanında önemli bir araştırma konusudur. Bu, hastaların hayatını kurtarmak için en uygun tedavi yöntemlerini seçmede yardımcı olur.
@@ -35,30 +39,22 @@
             </div>
         </div>
 
+        <!-- Dataset Details Section -->
         <div class="card shadow-lg border-0 rounded-lg mb-4">
             <div class="card-body">
                 <h3>About the Dataset</h3>
                 <p>
-                    </ul>
                     Veri seti, insan beyni MRI görüntülerinden oluşan ve 4 sınıfa ayrılmış toplam 3264 görüntü içermektedir: glioma, tümor yok, meningioma ve pituitary.
                 </p>
+                <ul>
+                </ul>
                 <p>
                     Not: Bu veri setindeki görüntülerin boyutları farklılık göstermektedir. Model doğruluğunu artırmak için ön işleme adımında görüntüler yeniden boyutlandırılmıştır.
                 </p>
             </div>
         </div>
 
-        <div class="card shadow-lg border-0 rounded-lg mb-4">
-            <div class="card-body">
-                <h3></h3>
-                <p>
-                    <strong></strong><br>
-                    <strong></strong><br>
-                    <strong></strong> 
-                </p>
-            </div>
-        </div>
-
+        <!-- Training Dataset Composition Section -->
         <div class="card shadow-lg border-0 rounded-lg mb-4">
             <div class="card-body">
                 <h3>Training Dataset Composition</h3>
@@ -73,6 +69,7 @@
             </div>
         </div>
 
+        <!-- Test Dataset Composition Section -->
         <div class="card shadow-lg border-0 rounded-lg mb-4">
             <div class="card-body">
                 <h3>Test Dataset Composition</h3>
@@ -86,6 +83,7 @@
             </div>
         </div>
 
+        <!-- Dataset Distribution Chart Section -->
         <div class="card shadow-lg border-0 rounded-lg mb-4">
             <div class="card-body text-center">
                 <h3>Dataset Label Distribution</h3>
@@ -100,28 +98,3 @@
     {% include 'partials/footer.html' %}
 </body>
 </html>
-
-
-<!--
-<div class="card-body text-center"> 
-
-Bu kod, bir HTML div elemanını (yani bir kutuyu):
-
-"card-body" Sınıfıyla:
-Bootstrap'e ait bir sınıftır ve genellikle bir kartın içeriğini temsil eder.
-Kartın içeriği için özel bir stil (padding, arka plan düzeni vb.) uygular.
-
-"text-center" Sınıfıyla:
-İçerikteki tüm metinleri yatay olarak ortalar.
-Kutunun içindeki metin, resim veya diğer elemanlar ortalanır.
-
--->
-
-
-<!--
-
-class="img-fluid" kodu, Bootstrap'te bir sınıftır
-
-Kısaca: Resmi cihaz boyutuna uygun hale getirir.
-
--->

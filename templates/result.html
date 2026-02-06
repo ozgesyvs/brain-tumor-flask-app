@@ -15,7 +15,7 @@
                             <i class="fas fa-check-circle"></i> Prediction Result
                         </h1>
                         <div class="text-center mb-4">
-                            <img src="{{ url_for('static', filename='uploads/' + filename) }}" class="img-fluid" alt="Uploaded MRI Image">
+                            <img src="{{ url_for('static', filename='uploads/' ' + filename) }}" class="img-fluid" alt="Uploaded MRI Image">
                         </div>
                         <div class="mb-3">
                             <h5><strong>Predicted Label:</strong> {{ predicted_label }}</h5>
@@ -71,7 +71,7 @@
         }
     
         function sendNotification(registration) {
-            if (Notification.permission === 'granted') {
+            if (Notification.permission === 'granted' && registration) {
                 registration.showNotification('Brain Tumor Results!', {
                     body: 'Your results are ready for review. Click to check them out.',
                     icon: '/static/icons/notification.png',
@@ -80,16 +80,9 @@
             }
         }
     
-  
-    
-    
-  
       {% if send_notification_js %}
                   {{ send_notification_js|safe }}
       {% endif %}
-
-    // Call the permission request on page load or user action
-    document.addEventListener('DOMContentLoaded', requestNotificationPermission);
 </script>
 
 </html>

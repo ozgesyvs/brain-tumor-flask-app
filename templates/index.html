@@ -6,23 +6,30 @@
 <body>
     {% include 'partials/navbar.html' %}
 
+    <!-- Main container for the upload form -->
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
+                <!-- Card containing the form -->
                 <div class="card shadow-lg border-0 rounded-lg">
                     <div class="card-body text-center">
+                        <!-- Form Title -->
                         <h1 class="card-title mb-4 text-primary">
                             <i class="fas fa-upload"></i> Upload MRI Image
                         </h1>
+                        <!-- Form to upload image for prediction -->
                         <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
+                            <!-- File input for image selection -->
                             <div class="form-group mb-4">
                                 <input type="file" name="file" accept="image/*" class="form-control" required>
                             </div>
+                            <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-lg w-100">
                                 <i class="fas fa-file-import"></i> Detect Brain Tumor
                             </button>
                         </form>
 
+                        <!-- Loading spinner, hidden by default -->
                         <div id="loadingSpinner" class="mt-4 d-none">
                             <div class="spinner-border text-primary" role="status">
                                 <span class="sr-only">Loading...</span>
@@ -36,6 +43,8 @@
     </div>
 
     {% include 'partials/footer.html' %}
+    
+    <!-- JavaScript to show spinner on form submission -->
     <script>
         document.getElementById('uploadForm').onsubmit = function () {
             document.getElementById('loadingSpinner').classList.remove('d-none');
@@ -44,156 +53,3 @@
 </body>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </html>
-
-
-<!--
-
-<div class="col-lg-6 col-md-8">   : 
-
-<div class="col-lg-6 col-md-8"> kodu, Bootstrap'te bir sınıftır ve sütun düzenini tanımlar:
-
-lg (large) ekranlarda genişliğin 12 sütunun yarısı kadar (%50) olmasını sağlar.
-md (medium) ekranlarda genişliğin 8 sütun kadar (%66.67) olmasını sağlar.
-
-Kısaca: Farklı ekran boyutlarında düzeni kontrol eder.
-
--->
-
-
-<!--
-
-
-<h1 class="card-title mb-4 text-primary">: 
-    
-Başlık oluşturur, 
-
-card-title görünümü stilize eder, 
-
-mb-4 alt boşluk ekler, 
-
-text-primary yazıyı mavi yapar.
-
-<i class="fas fa-upload"></i>: Font Awesome simge ekler, burada bir "yükleme" simgesi.
-
-"Upload MRI Image": Başlık metni olarak görüntülenir.
-
--->
-
-
-
-
-
-
-
-
-<!--
-
-1. <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
-
-action="/predict": Form verileri sunucuya gönderildiğinde /predict adresine yönlendirilir.
-
-method="post": Veriler POST yöntemiyle gönderilir, genelde hassas veri iletimi için kullanılır.
-
-enctype="multipart/form-data": Dosya yüklemeleri için formun içeriğini uygun biçimde kodlar.
-
-id="uploadForm": Bu forma JavaScript gibi kodlarla erişim ve işlem yapmak için bir kimlik atar.
-
-
-
-2. <div class="form-group mb-4">
-
-form-group: Form alanlarını gruplamak için kullanılan bir sınıf, düzenlemeyi kolaylaştırır.
-
-mb-4: Alana alt boşluk (margin-bottom) ekler.
-
-
-
-3. <input type="file" name="file" accept="image/*" class="form-control" required>
-
-type="file": Kullanıcıya dosya yüklemesi yapabileceği bir alan sağlar.
-
-name="file": Sunucu tarafında dosyaya bu isimle erişilir.
-
-accept="image/*": Sadece resim dosyalarını yüklemeye izin verir.
-
-class="form-control": Form alanını stilize eder (Bootstrap sınıfı).
-
-required: Bu alanın doldurulmasını zorunlu kılar.
-
-
-
-
-4. <button type="submit" class="btn btn-primary btn-lg w-100">
-
-type="submit": Bu buton formu gönderir.
-
-class="btn btn-primary btn-lg w-100":
-
-btn: Buton görünümü sağlar.
-
-btn-primary: Mavi bir buton yapar (Bootstrap).
-
-btn-lg: Büyük boyutlu bir buton yapar.
-
-w-100: Buton genişliğini yüzde 100 yapar.
-
-
-
-5. <i class="fas fa-file-import"></i>
-
-Font Awesome simgesi ekler, burada bir "dosya yükleme" simgesi.
-
-
-6. Detect Brain Tumor
-
-Butonun görünen metni olarak "Beyin Tümörü Tespit Et" yazısını gösterir.
-
-
-
-1. <div id="loadingSpinner" class="mt-4 d-none">
-
-id="loadingSpinner": Bu bölüme bir kimlik atanmış. JavaScript gibi araçlarla 
-bu kimlik kullanılarak bölgeye erişilebilir ve görünürlüğü kontrol edilebilir.
-
-class="mt-4 d-none":
-
-mt-4: Bu bölgenin üst kısmına biraz boşluk (margin-top) ekler.
-
-d-none: Bu bölgeyi başlangıçta görünmez yapar. JavaScript ile bu sınıf kaldırıldığında görünür hale gelir.
-
-
-
-2. <div class="spinner-border text-primary" role="status">
-
-class="spinner-border": Dönen bir yükleme simgesi (spinner) oluşturur (Bootstrap sınıfı).
-
-text-primary: Yükleme simgesini mavi renk yapar (Bootstrap'ın birincil rengi).
-
-role="status": Bu yükleme simgesine erişilebilirlik (accessibility) için bir statü rolü atar.
-
-
-
-
-3. <span class="sr-only">Loading...</span>
-
-class="sr-only": Bu metni sadece ekran okuyucular için görünür hale getirir. Görsel olarak kullanıcılar bunu görmez.
-
-Loading...: Ekran okuyucular için yükleme durumunu ifade eden bir mesaj.
-
-
-
-
-4. <p class="lead mt-3">Model is working to detect brain tumor...</p>
-
-class="lead": Yazıyı biraz daha büyük ve vurgulu bir stil ile gösterir (Bootstrap sınıfı).
-
-mt-3: Üst tarafa biraz boşluk (margin-top) ekler.
-
-Model is working to detect brain tumor...: Kullanıcıya modelin işlemde olduğunu açıklayan bir mesaj.
-
-
-
-
-
-
--->
