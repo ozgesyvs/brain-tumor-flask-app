@@ -62,25 +62,26 @@ This is a web-based application built using Flask and TensorFlow for detecting b
     ```
 
 ### Application structure
-```text
-├── app.py                   # Ana Flask uygulaması (Geliştirme sunucusu)
-├── wsgi.py                  # Prodüksiyon sunucusu (Gunicorn vb.) giriş noktası
-├── instance/                # SQLite veritabanı klasörü
-├── notebooks/               # Model eğitim ve analiz defterleri (Jupyter)
-├── static/
-│   ├── css/                 # Stil dosyaları (Bootstrap vb.)
-│   ├── js/                  # JavaScript dosyaları
-│   ├── icons/               # PWA ve site ikonları
-│   ├── images/              # Genel arayüz görselleri
-│   ├── models/              # Eğitilmiş model dosyaları (xception11.keras)
-│   ├── external_test_data/  # Dış kaynaklı deneme MRI görselleri
-│   ├── test/                # Yerel test görselleri
-│   └── uploads/             # Kullanıcıların yüklediği görseller 
-├── templates/               # HTML sayfaları 
-├── .gitignore               # Git'e gönderilmeyecek dosyaların listesi
-├── requirements.txt         # Gerekli Python kütüphaneleri listesi
-├── linux_requirements.txt   # Linux sunucular için optimize edilmiş küphaneler
-└── README.md                # Proje dökümantasyonu ```
+```
+├── app.py                   # Main Flask application
+├── wsgi.py                  # WSGI entry point for production servers
+├── instance/                # Instance folder for SQLite database
+├── notebooks/               # Jupyter notebooks for model experimentation
+├── static/                  # Static files (CSS, JS, images, etc.)
+│   ├── css/                 # CSS stylesheets
+│   ├── js/                  # JavaScript files
+│   ├── icons/               # PWA and site icons
+│   ├── images/              # UI images
+│   ├── models/              # Trained Keras model
+│   ├── external_test_data/  # External test images
+│   ├── test/                # Local test images
+│   └── uploads/             # User-uploaded images
+├── templates/               # HTML templates
+├── .gitignore               # Git ignore file
+├── requirements.txt         # Python dependencies
+├── linux_requirements.txt   # Python dependencies for Linux
+└── README.md                # This README file
+```
 
 ### Usage
 
