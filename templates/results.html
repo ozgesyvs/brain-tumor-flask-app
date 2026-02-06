@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Results - Brain Tumor Detection</title>
+{% include 'partials/header.html' %}
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4 text-center text-primary">
+                            <i class="fas fa-list-alt"></i> Previous MRI Results
+                        </h1>
+
+                        <div class="table-responsive">
+                            <table id="resultsTable" class="table table-striped table-hover">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        <th>Image</th>
+                                        <th>Predicted Label</th>
+                                        <th>Confidence (%)</th>
+                                        <th>Detection Time (s)</th>
+                                        <th>Uploaded Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for prediction in predictions %}
+                                    <tr class="text-center align-middle">
+                                        <td>
+                                            <img src="{{ url_for('static', filename='uploads/' + prediction.filename) }}" 
+                                                 alt="MRI" class="img-thumbnail" style="height: 100px;" 
+                                                 data-bs-toggle="tooltip" title="{{ prediction.filename }}"
+                                                 data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='uploads/' + prediction.filename) }}">
+                                        </td>
+                                        <td class="text-capitalize">{{ prediction.predicted_label }}</td>
+                                        <td>%{{ prediction.confidence }}</td>
+                                        <td>{{ prediction.detection_time }}</td>
+                                        <td>{{ prediction.uploaded_time }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% if predictions|length == 0 %}
+                        <div class="alert alert-warning text-center" role="alert">
+                            No results available. Please upload an MRI image.
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">MRI Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid" alt="MRI Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/footer.html' %}
+
+    <!-- Include Bootstrap, jQuery, and DataTables JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        // Initialize DataTable with search and sorting features
+        $(document).ready(function () {
+            $('#resultsTable').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }  // Disable ordering for the first column (Image column)
+                ]
+            });
+
+            // Initialize tooltips for showing the filename
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+            // Show the image in modal when clicked
+            $('#resultsTable').on('click', 'img', function () {
+                var imageUrl = $(this).attr('data-bs-image');
+                $('#modalImage').attr('src', imageUrl);
+                $('#imageModal').modal('show');
+            });
+        });
+    </script>
+
+</body>
+</html>

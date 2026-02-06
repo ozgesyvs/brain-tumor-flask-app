@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <title>About - Brain Tumor Detection</title>
+
+    <!-- Page title shown on the browser tab -->
+
+    {% include 'partials/header.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+    <!-- Common header and page-specific stylesheet -->
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <!-- Navigation bar -->
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-body">
+
+                        <!-- Main content container -->
+
+                        <h1 class="card-title mb-4 text-center text-primary">
+                            <i class="fas fa-brain"></i> About This Brain Tumor Detection Project
+                        </h1>
+
+                        <!-- Page heading -->
+
+                        <p>
+                            Bu web uygulaması, MRI görüntülerini analiz etmek ve farklı beyin tümörü türlerinin 
+                            varlığını tahmin etmek için bir derin öğrenme modeli kullanır. Model, Xception mimarisi 
+                            kullanılarak oluşturulmuş ve dört sınıfa ayrılmış MRI görüntüleri içeren bir veri kümesi 
+                            üzerinde eğitilmiştir:
+                            <strong>glioma tumor</strong>, <strong>meningioma tumor</strong>, 
+                            <strong>pituitary tumor</strong>, ve <strong>no tumor</strong>.
+                        </p>
+
+                        <p>
+                            Kullanıcılar bir MRI görüntüsü yükleyerek tümörün mevcut olup olmadığını ve modelin 
+                            tahminine olan güven seviyesini öğrenebilir.
+                        </p>
+
+                        <p>
+                            Projenin amacı, konvolüsyonel sinir ağlarının (CNN) beyin tümörü tespiti gibi 
+                            tıbbi görüntü sınıflandırma problemlerinde nasıl kullanılabileceğini göstermektir.
+                        </p>
+
+                        <h4 class="mt-5">Algoritma ve Model Eğitimi:</h4>
+
+                        <p>
+                            Model, görüntü sınıflandırma görevlerinde yüksek performans gösteren Xception 
+                            mimarisine dayanmaktadır.
+                        </p>
+
+                        <ol>
+                            <li>Veri hazırlığı: MRI görüntüleri ön işleme tabi tutuldu ve 150x150 boyutuna getirildi.</li>
+                            <li>Model yapısı: Xception tabanlı özellik çıkarımı ve tam bağlantılı katmanlar kullanıldı.</li>
+                            <li>Eğitim: Model 12 epoch boyunca eğitildi ve %97 üzeri doğruluk elde edildi.</li>
+                            <li>Değerlendirme: Doğruluk, kayıp ve karmaşıklık matrisi metrikleri kullanıldı.</li>
+                        </ol>
+
+                        <!-- Training pipeline summary -->
+
+                        <h4 class="mt-4">Kullanılan Teknolojiler:</h4>
+
+                        <ul class="list-unstyled d-flex flex-wrap justify-content-between">
+                            <li class="me-3 text-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg"
+                                     alt="TensorFlow" style="width: 60px; height: auto;">
+                                <span class="d-block mt-1">TensorFlow</span>
+                            </li>
+                            <li class="me-3 text-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg"
+                                     alt="Keras" style="width: 60px; height: auto;">
+                                <span class="d-block mt-1">Keras</span>
+                            </li>
+                            <li class="me-3 text-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg"
+                                     alt="Flask" style="width: 60px; height: auto;">
+                                <span class="d-block mt-1">Flask</span>
+                            </li>
+                            <li class="me-3 text-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/OpenCV_Logo_with_text.png"
+                                     alt="OpenCV" style="width: 60px; height: auto;">
+                                <span class="d-block mt-1">OpenCV</span>
+                            </li>
+                        </ul>
+
+                        <!-- Tech stack -->
+
+                        <h4 class="mt-4">Teknik Özellikler:</h4>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class="fas fa-code"></i> <strong>Python Version:</strong> 3.11.7
+                            </li>
+                            <br>
+                            <li>
+                                <i class="fas fa-file-alt"></i> <strong>Gereksinimler:</strong>
+                                <pre class="m-0">
+Flask==3.0.3
+Keras==3.6.0
+TensorFlow==2.17.0
+OpenCV-Python==4.10.0.82
+NumPy==1.26.4
+                                </pre>
+                            </li>
+                        </ul>
+
+                        <!-- Environment and dependencies -->
+
+                        <div class="text-center mt-4">
+                            <h4>Get Involved</h4>
+                            <p>For contributions or inquiries, feel free to reach out!</p>
+                            <a href="mailto:your_email@example.com" class="btn btn-primary">
+                                <i class="fas fa-envelope"></i> Contact with Me
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/footer.html' %}
+
+    <!-- External libraries -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

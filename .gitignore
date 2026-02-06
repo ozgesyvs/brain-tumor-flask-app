@@ -1,0 +1,59 @@
+# =========================
+# Python & Bytecode
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# Sanal Ortamlar 
+# =========================
+.venv/
+venv/
+env/
+ENV/
+.env/
+.conda/
+meeting/
+tf_env/
+venv.bak/
+env.bak/
+
+# =========================
+# IDE & OS Dosyaları (Mac kullandığın için kritik)
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.vscode/
+.idea/
+.Spotlight-V100
+.Trashes
+
+# =========================
+# Flask & Veritabanı
+# =========================
+instance/
+.webassets-cache
+*.db
+*.sqlite3
+
+# =========================
+# Modeller (xception11.keras hariç hepsini gizle)
+# =========================
+static/models/*
+!static/models/xception11.keras
+
+# =========================
+# Kullanıcı Verileri & Çıktılar
+# =========================
+static/uploads/
+predictions_log.json
+*.log
+*.pdf
+
+# =========================
+# Jupyter Notebook
+# =========================
+.ipynb_checkpoints/

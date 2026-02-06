@@ -1,0 +1,21 @@
+{
+    "name": "Brain Tumor Detection",
+    "short_name": "Tumor Detector",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff",
+    "description": "A web application for detecting brain tumors.",
+    "icons": [
+        {
+            "src": "images/organ192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/organ512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

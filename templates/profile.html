@@ -1,0 +1,284 @@
+<!-- templates/profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<title>Profil - Brain Tumor Detection</title>
+
+{% include 'partials/header.html' %}
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4 text-center text-primary">
+                            <i class="fas fa-list-alt"></i> Your Uploaded Predictions
+                        </h1>
+
+                        <div class="table-responsive">
+                            <table id="predictionsTable" class="table table-striped table-hover">
+                                <thead class="thead-light">
+                                    <tr class="text-center">
+                                        <th>Image</th>
+                                        <th>Predicted Label</th>
+                                        <th>Confidence (%)</th>
+                                        <th>Detection Time (s)</th>
+                                        <th>Uploaded Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for prediction in predictions %}
+                                    <tr class="text-center align-middle">
+                                        <td>
+                                            <img src="{{ url_for('static', filename='uploads/' + prediction.filename) }}" 
+                                                 alt="MRI" class="img-thumbnail" style="height: 100px;" 
+                                                 data-bs-toggle="tooltip" title="{{ prediction.filename }}"
+                                                 data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='uploads/' + prediction.filename) }}">
+                                        </td>
+                                        <td class="text-capitalize">{{ prediction.predicted_label }}</td>
+                                        <td>%{{ prediction.confidence }}</td>
+                                        <td>{{ prediction.detection_time }}</td>
+                                        <td>{{ prediction.uploaded_time }}</td>
+                                        <td>
+                                            <a href="{{ url_for('download', prediction_id=prediction.id) }}" class="btn btn-success btn-sm">Download PDF</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% if predictions|length == 0 %}
+                        <div class="alert alert-warning text-center" role="alert">
+                            Yüklenmiş tahmin bulunmamaktadır.
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Uploaded Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid" alt="Uploaded Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/footer.html' %}
+
+    <!-- Include Bootstrap, jQuery, and DataTables JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        // Initialize DataTable with search and sorting features
+        $(document).ready(function () {
+            $('#predictionsTable').DataTable({
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 }  // Disable ordering for the first column (Image column)
+                ]
+            });
+
+            // Initialize tooltips for showing the filename
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+            // Show the image in modal when clicked
+            $('#predictionsTable').on('click', 'img', function () {
+                var imageUrl = $(this).attr('data-bs-image');
+                $('#modalImage').attr('src', imageUrl);
+                $('#imageModal').modal('show');
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+<!--
+
+<table id="predictionsTable" class="table table-striped table-hover">
+
+<table>: HTML'de tablo oluşturur.
+id="predictionsTable": Bu tabloya "predictionsTable" adında bir kimlik atanır.
+Kimlik, tabloda JavaScript veya CSS ile özel işlemler yapmaya olanak tanır. 
+Örneğin, JavaScript ile bu tabloya erişip dinamik veri ekleyebilirsiniz.
+
+
+table-hover: Kullanıcı fareyle bir satırın üzerine geldiğinde o satırı vurgular. 
+Bu, kullanıcı deneyimini artırır.
+
+
+<thead class="thead-light">
+
+Tablo başlıklarını (<thead>) tanımlar ve Bootstrap'in thead-light sınıfını uygular.
+thead-light, tablo başlıklarına açık bir arka plan rengi verir. 
+Bu, genellikle başlıkları ayırt etmek için kullanılır.
+
+-->
+
+
+<!--
+
+<tbody>
+Tablonun gövdesini tanımlar. Tablonun ana içeriği bu etikette bulunur.
+
+{% for prediction in predictions %}
+Django/Jinja2 şablon döngüsü: predictions adlı bir liste üzerinde döngü başlatır.
+Her döngüde, bir tahmin prediction adında bir değişkene atanır ve tabloya bir satır olarak eklenir.
+
+
+<tr class="text-center align-middle">
+<tr>: Tabloya bir satır ekler.
+class="text-center align-middle":
+text-center: Satırdaki hücrelerdeki metinleri yatay olarak ortalar.
+align-middle: Hücre içeriğini dikey olarak ortalar.
+
+
+
+<img src="{{ url_for('static', filename='uploads/' + prediction.filename) }}" 
+     alt="MRI" class="img-thumbnail" style="height: 100px;" 
+     data-bs-toggle="tooltip" title="{{ prediction.filename }}"
+     data-bs-target="#imageModal" data-bs-image="{{ url_for('static', filename='uploads/' + prediction.filename) }}">
+
+
+
+<img>: Tahmin edilen MRI görselini tabloya ekler.
+
+src: Görüntü kaynağı (MRI görselinin yolu). Dosya yolu dinamik olarak ayarlanır.
+
+alt="MRI": Görsel yüklenemezse bu metin görünür.
+
+class="img-thumbnail": Bootstrap sınıfı. Görüntüye kenarlık ve küçük ölçek uygular.
+
+style="height: 100px;": Görselin yüksekliği 100 piksel olarak ayarlanır.
+
+data-bs-toggle="tooltip" ve title="{{ prediction.filename }}": Fare görselin üzerine geldiğinde, 
+tahmin edilen dosya adını görüntüler (tooltip).
+
+data-bs-target ve data-bs-image: Görsel bir modal pencereye tıklandığında yüklemek için kullanılır.
+
+
+
+
+<td class="text-capitalize">{{ prediction.predicted_label }}</td>
+
+<td>: Tahmin edilen sınıfı (örneğin, "Glioma") görüntüler.
+text-capitalize: Metni büyük harfle başlatır (örneğin, "no tumor" → "No tumor")
+
+
+
+<td>%{{ prediction.confidence }}</td>
+
+<td>: Modelin tahminine olan güven yüzdesini görüntüler (örneğin, %98.5).
+
+
+
+<td>{{ prediction.detection_time }}</td>
+
+Algılamanın yapıldığı süreyi görüntüler (örneğin, "2.35 saniye").
+
+
+
+<td>{{ prediction.uploaded_time }}</td>
+
+Görüntünün yüklenme zamanını görüntüler (örneğin, "12:45 PM, 7 Aralık 2024")
+
+
+
+
+<td>
+    <a href="{{ url_for('download', prediction_id=prediction.id) }}" class="btn btn-success btn-sm">Download PDF</a>
+</td>
+
+
+<a>: Tahmin verilerini PDF olarak indirmek için bir bağlantı sağlar.
+
+href="{{ url_for('download', prediction_id=prediction.id) }}": İlgili tahminin PDF dosyasına yönlendirilir. 
+Tahmin kimliği prediction.id ile dinamik olarak ayarlanır.
+
+class="btn btn-success btn-sm": Bootstrap buton stili uygular:
+
+Yeşil renk (btn-success)
+Küçük boyut (btn-sm)
+
+
+
+{% endfor %}
+
+Döngüyü kapatır. Tablonun gövdesinde, predictions listesindeki tüm tahminler için bir satır eklenmiş olur.
+
+
+
+
+Bu kod, tahmin verilerini (MRI görüntüsü, tahmin edilen etiket, güven yüzdesi vb.) 
+tablo satırları olarak dinamik şekilde ekler ve kullanıcıya düzenli, etkileşimli 
+bir şekilde gösterir. Ayrıca PDF indirilebilir bir bağlantı sunar ve görsellerin 
+önizleme veya detaylı görünümünü kolaylaştırır.
+
+-->
+
+
+
+<!--
+
+ {% if predictions|length == 0 %}
+                        <div class="alert alert-warning text-center" role="alert">
+                            No uploaded predictions available.
+                        </div>
+                        {% endif %}
+
+
+{% if predictions|length == 0 %}
+
+Jinja2 şablon koşulu: predictions listesinin uzunluğu (eleman sayısı) sıfıra eşit mi diye kontrol eder.
+Eğer predictions listesi boşsa (hiç tahmin yüklenmemişse), koşul doğru çalışır ve uyarı mesajı görüntülenir.
+
+
+
+<div class="alert alert-warning text-center" role="alert">
+
+<div>: Bir uyarı kutusu oluşturur.
+class="alert alert-warning":
+alert: Bir uyarı (kutu) tasarımını oluşturur.
+alert-warning: Uyarının rengini sarı-turuncu tonunda belirler (Bootstrap tasarımı).
+text-center: Kutudaki mesajı yatay olarak ortalar.
+role="alert": Ekran okuyuculara, bunun bir uyarı mesajı olduğunu belirtir.
+
+
+
+Mesajın İçeriği:
+
+No uploaded predictions available.
+Kullanıcıya, henüz tahmin edilen sonuçların olmadığını anlatan bir mesaj.
+
+
+
+
+{% endif %}
+
+Koşulun sonunu belirtir. Eğer predictions listesi boş değilse bu kod bloğu çalışmaz ve mesaj gösterilmez.                       
+
+-->
+
+
+
+
+

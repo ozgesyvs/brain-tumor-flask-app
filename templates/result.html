@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Result - Brain Tumor Detection</title>
+{% include 'partials/header.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4 text-center text-primary">
+                            <i class="fas fa-check-circle"></i> Prediction Result
+                        </h1>
+                        <div class="text-center mb-4">
+                            <img src="{{ url_for('static', filename='uploads/' + filename) }}" class="img-fluid" alt="Uploaded MRI Image">
+                        </div>
+                        <div class="mb-3">
+                            <h5><strong>Predicted Label:</strong> {{ predicted_label }}</h5>
+                        </div>
+                        <div class="mb-3">
+                            <h5><strong>Confidence:</strong> %{{ confidence }}</h5>
+                        </div>
+                        <div class="mb-3">
+                            <h5><strong>Uploaded Time:</strong> {{ uploaded_time }}</h5>
+                        </div>
+                        <div class="mb-3">
+                            <h5><strong>Detection Time:</strong> {{ detection_time }} seconds</h5>
+                        </div>
+                        <div class="text-center">
+                            <a href="{{ url_for('index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Go Back
+                            </a>
+                            <a href="{{ url_for('results') }}" class="btn btn-secondary ms-2">
+                                <i class="fas fa-table"></i> View All Results
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/footer.html' %}
+</body>
+
+<script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/service-worker.js')
+            .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+                // Now that registration is successful, request notification permission
+                requestNotificationPermission(registration);
+            })
+            .catch(function(error) {
+                console.error('Service Worker registration failed:', error);
+            });
+        }
+    
+        function requestNotificationPermission(registration) {
+            Notification.requestPermission().then(function(result) {
+                if (result === 'granted') {
+                    console.log('Notification permission granted.');
+                    sendNotification(registration); // Call sendNotification with the registration
+                } else {
+                    console.log('Notification permission denied.');
+                }
+            });
+        }
+    
+        function sendNotification(registration) {
+            if (Notification.permission === 'granted') {
+                registration.showNotification('Brain Tumor Results!', {
+                    body: 'Your results are ready for review. Click to check them out.',
+                    icon: '/static/icons/notification.png',
+                    badge: '/static/icons/alert.png',
+                });
+            }
+        }
+    
+  
+    
+    
+  
+      {% if send_notification_js %}
+                  {{ send_notification_js|safe }}
+      {% endif %}
+
+    // Call the permission request on page load or user action
+    document.addEventListener('DOMContentLoaded', requestNotificationPermission);
+</script>
+
+</html>

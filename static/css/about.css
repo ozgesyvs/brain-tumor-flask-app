@@ -1,0 +1,8 @@
+ul .d-flex {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

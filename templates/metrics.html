@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Model Performance Metrics - Brain Tumor Detection</title>
+        {% include 'partials/header.html' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    </head>
+    <body>
+        {% include 'partials/navbar.html' %}
+
+        <div class="container mt-5">
+            <h2 class="text-primary mb-4 text-center"><i class="fas fa-chart-line"></i> Model Performance Metrics</h2>
+            
+            <div class="card shadow-lg border-0 rounded-lg mb-4">
+                <div class="card-body">
+                    <h3>Eğitim ve Doğrulama Kaybı & Doğruluğu </h3>
+                    <img src="{{ url_for('static', filename='images/metrics/grafik.png') }}" 
+                         alt="Training and Validation Loss, Training and Validation Accuracy" 
+                         class="img-fluid">
+                </div>
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-lg mb-4">
+                <div class="card-body">
+                    <h3>Karmaşıklık Matrisi</h3>
+                    <img src="{{ url_for('static', filename='images/metrics/karmasiklik.png') }}" 
+                         alt="Confusion Matrix" 
+                         class="img-fluid">
+                </div>
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-lg mb-4">
+                <div class="card-body">
+                    <h3>Sınıflandırma Raporu</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1-Score</th>
+                                    <th>Support</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0</td>
+                                    <td>0.94</td>
+                                    <td>0.95</td>
+                                    <td>0.94</td>
+                                    <td>168</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>0.96</td>
+                                    <td>0.94</td>
+                                    <td>0.95</td>
+                                    <td>108</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>0.96</td>
+                                    <td>0.94</td>
+                                    <td>0.95</td>
+                                    <td>201</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>0.96</td>
+                                    <td>0.99</td>
+                                    <td>0.98</td>
+                                    <td>176</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Accuracy</strong></td>
+                                    <td colspan="3">0.96</td>
+                                    <td>653</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Macro Avg</strong></td>
+                                    <td>0.96</td>
+                                    <td>0.95</td>
+                                    <td>0.95</td>
+                                    <td>653</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Weighted Avg</strong></td>
+                                    <td>0.96</td>
+                                    <td>0.96</td>
+                                    <td>0.96</td>
+                                    <td>653</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'partials/footer.html' %}
+</html>
+
+
+<!--
+
+
+
+<div class="table-responsive">
+
+Duyarlı bir tablo konteyneri oluşturur.
+Bu, tablonun ekran boyutuna göre kaydırılabilir (scrollable) hale gelmesini sağlar.
+Eğer tablo genişliği ekranı aşarsa, tabloyu yatay kaydırma çubuğuyla görüntülemek mümkün olur.
+
+
+
+<table class="table table-bordered table-striped">
+
+<table>: HTML'de tablo oluşturur.
+class="table": Bootstrap'in tablolar için temel stilini uygular. Bu, tabloyu düzenli ve okunabilir yapar.
+table-bordered: Tablo hücrelerine çerçeve ekler, böylece hücreler daha belirgin olur.
+table-striped: Tablo satırlarına dönüşümlü olarak arka plan rengi ekler. 
+Bu, uzun tablolarda satırları ayırt etmeyi kolaylaştırır.
+
+
+
+<thead class="table-primary">
+
+Tablo başlıklarını (<thead>) tanımlar ve bu başlıkları 
+biçimlendirmek için Bootstrap'in table-primary sınıfını uygular.
+table-primary, tablo başlıklarının arka planını 
+mavi yapar (varsayılan renk) ve metni daha belirgin hale getirir.
+
+
+
+-->
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dataset - Brain Tumor Detection</title>
+    {% include 'partials/header.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <h2 class="text-primary mb-4 text-center"><i class="fas fa-database"></i> Dataset Overview</h2>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body">
+                <h3>Abstract</h3>
+                <p>
+                    Beyin tümörü, çocuklar ve yetişkinler arasında en agresif hastalıklardan biri olarak kabul edilir. Beyin tümörleri, tüm birincil Merkezi Sinir Sistemi (CNS) tümörlerinin %85 ila %90’ını oluşturur. Her yıl yaklaşık 11.700 kişiye beyin tümörü teşhisi konmaktadır. Kanserli bir beyin veya CNS tümörü olan kişiler için 5 yıllık hayatta kalma oranı erkeklerde yaklaşık %34, kadınlarda ise %36’dır. Beyin tümörleri, iyi huylu tümör, kötü huylu tümör, hipofiz tümörü gibi çeşitli sınıflara ayrılmaktadır. Hastaların yaşam beklentisini artırmak için doğru teşhis, tedavi planlaması ve uygun tedavi yöntemleri uygulanmalıdır. Beyin tümörlerini tespit etmenin en iyi yöntemi Manyetik Rezonans Görüntüleme (MRI) tekniğidir. Tarama süreci sırasında büyük miktarda görüntü verisi üretilmektedir. Bu görüntüler radyologlar tarafından incelenir. Ancak beyin tümörlerinin karmaşıklığı ve özellikleri nedeniyle manuel inceleme hataya açık olabilir.
+                </p>
+                <p>
+                    Makine Öğrenimi (ML) ve Yapay Zeka (AI) kullanılarak gerçekleştirilen otomatik sınıflandırma tekniklerinin, manuel sınıflandırmaya kıyasla tutarlı bir şekilde daha yüksek doğruluk sağladığı görülmüştür. Bu nedenle, Derin Öğrenme Algoritmaları (Convolutional Neural Network (CNN), Yapay Sinir Ağı (ANN) ve Transfer Öğrenimi (TL)) kullanarak tespit ve sınıflandırma yapan bir sistem önerilmesi, dünya genelindeki doktorlar için büyük bir yardımcı olacaktır.
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body">
+                <h3>About Dataset</h3>
+                <p>
+                    Beyin tümörü, beyindeki anormal hücrelerin birikimi veya kütlesidir. Beyninizi çevreleyen kafatası oldukça sert bir yapıya sahiptir. Böyle sınırlı bir alan içinde herhangi bir büyüme, çeşitli problemlere yol açabilir. Beyin tümörleri kanserli (kötü huylu) veya kanserli olmayan (iyi huylu) olabilir. İyi huylu veya kötü huylu tümörler büyüdüğünde, kafatası içindeki basıncı artırarak beyin hasarına ve potansiyel olarak yaşamı tehdit eden durumlara yol açabilir.
+                <h4>The Importance of the Subject</h4>
+                <p>
+                    Beyin tümörlerinin erken teşhisi ve sınıflandırılması, tıbbi görüntüleme alanında önemli bir araştırma konusudur. Bu, hastaların hayatını kurtarmak için en uygun tedavi yöntemlerini seçmede yardımcı olur.
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body">
+                <h3>About the Dataset</h3>
+                <p>
+                    </ul>
+                    Veri seti, insan beyni MRI görüntülerinden oluşan ve 4 sınıfa ayrılmış toplam 3264 görüntü içermektedir: glioma, tümor yok, meningioma ve pituitary.
+                </p>
+                <p>
+                    Not: Bu veri setindeki görüntülerin boyutları farklılık göstermektedir. Model doğruluğunu artırmak için ön işleme adımında görüntüler yeniden boyutlandırılmıştır.
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body">
+                <h3></h3>
+                <p>
+                    <strong></strong><br>
+                    <strong></strong><br>
+                    <strong></strong> 
+                </p>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body">
+                <h3>Training Dataset Composition</h3>
+                <p class="text-danger"><strong> Not: Eğitim ve test veri setleri %80'e %20 olacak şekilde ayrılmıştır. </strong></p>
+                <p> Bu klasör, modeli eğitmek için kullanılan toplam 2611 beyin tümörü görüntüsü içermektedir:</p>
+                <ul>
+                    <li>glioma: 758 files</li>
+                    <li>no tumor: 392 files</li>
+                    <li>meningioma: 736 files</li>
+                    <li>pituitary: 725 files</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body">
+                <h3>Test Dataset Composition</h3>
+                <p>Bu klasör, modeli test etmek için kullanılan toplam 653 beyin tümörü görüntüsü içermektedir:</p>
+                <ul>
+                    <li>glioma: 168 files</li>
+                    <li>no tumor: 108 files</li>
+                    <li>meningioma: 201 files</li>
+                    <li>pituitary: 176 files</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-body text-center">
+                <h3>Dataset Label Distribution</h3>
+                <img src="{{ url_for('static', filename='images/metrics/dagilim.png') }}" 
+                     alt="Dataset Distribution" 
+                     class="img-fluid">
+            </div>
+        </div>
+
+    </div>
+
+    {% include 'partials/footer.html' %}
+</body>
+</html>
+
+
+<!--
+<div class="card-body text-center"> 
+
+Bu kod, bir HTML div elemanını (yani bir kutuyu):
+
+"card-body" Sınıfıyla:
+Bootstrap'e ait bir sınıftır ve genellikle bir kartın içeriğini temsil eder.
+Kartın içeriği için özel bir stil (padding, arka plan düzeni vb.) uygular.
+
+"text-center" Sınıfıyla:
+İçerikteki tüm metinleri yatay olarak ortalar.
+Kutunun içindeki metin, resim veya diğer elemanlar ortalanır.
+
+-->
+
+
+<!--
+
+class="img-fluid" kodu, Bootstrap'te bir sınıftır
+
+Kısaca: Resmi cihaz boyutuna uygun hale getirir.
+
+-->
